@@ -64,18 +64,19 @@ function getTransactions(){
     let transactionsHtml = ``;
     
     if(transactions.length){
-        transactions.forEach((item) => {
+        transactions.forEach((item, index) => {
             let type = "Entrada";
             if(item.type === "2"){
                 type = "Saída";
             }
 
             transactionsHtml += `
-                <tr>
+                <tr id = "transaction-${index}">
                     <th scope="row">${item.date}</th>
                     <td>${item.value.toFixed(2)}</td>
                     <td>${type}</td>
                     <td>${item.description}</td>
+                    <td> <button class = "btn-delete" onclick ="deleteTransaction(${index})"><i class="bi bi-x-circle-fill icon-click"></i></button> </td>
                 </tr>`
         });
     }
@@ -85,14 +86,22 @@ function getTransactions(){
 }
 
 
-
 function logout() {
-    sessionStorage.removeItem("logged");
-    localStorage.removeItem("session");
+  sessionStorage.removeItem("logged");
+  localStorage.removeItem("session");
   
-    window.location.href = "index.html";
-  }
+  window.location.href = "index.html";
+}
 
-  function saveData(data) {
-    localStorage.setItem(data.login, JSON.stringify(data));
-  }
+function saveData(data) {
+  localStorage.setItem(data.login, JSON.stringify(data));
+}
+
+
+function deleteTransaction(index){
+  data.transactions.splice(index, 1)
+  saveData(data)
+  getTransactions()
+  alert("Transação deletada com sucesso!")
+}
+
