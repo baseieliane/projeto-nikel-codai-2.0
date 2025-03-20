@@ -105,3 +105,21 @@ header{
 .menu{
     margin-right: 20px;
 }
+
+.icon-click{
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+}
+
+.icon-click:hover{
+    color: rgba(255, 0, 0, 0.605);
+}
+
+.btn-delete{
+    background: none;
+    border: none;
+    border-radius: 100%;
+    
+
+}
